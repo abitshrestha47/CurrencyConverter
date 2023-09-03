@@ -37,6 +37,7 @@ input[type="text"]{
   border-right:none;
   border-top-right-radius: 0; 
   border-bottom-right-radius: 0;
+  color:white;
 }
 input[type="text"]:focus{
   border:1px solid green;
@@ -51,6 +52,7 @@ select {
   border-left:none;
   border-top-left-radius: 0; 
   border-bottom-left-radius: 0;
+  color:white;
 }
 
 .line {
@@ -71,7 +73,19 @@ select {
 .line:before {
   top: 7px; /* Adjust the top gap value */
 }
-
+button{
+  background:none;
+  color:white;
+  padding:8px;
+  border:1px solid white;
+  border-radius:4px;
+  cursor:pointer;
+}
+.date{
+  color:#858585;
+  margin-top:14px;
+  margin-bottom: -10px;
+}
 
 
 
