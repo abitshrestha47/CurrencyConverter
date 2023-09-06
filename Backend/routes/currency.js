@@ -16,13 +16,9 @@ currencyRouter.get("/", (req, res) => {
       },
     },
     function (error, response, body) {
-      if (error) return console.error("Request failed:", error);
+      if (error) res.json(error);
       else if (response.statusCode != 200)
-        return console.error(
-          "Error:",
-          response.statusCode,
-          body.toString("utf8")
-        );
+       res.json({message:"201 not resolved"})
       else res.json(body);
     }
   );

@@ -9,6 +9,7 @@ const localTimeNow=currentDate.tz(localTimezone);
 const formattedDateTime = localTimeNow.format('MMM D, HH:mm');
 
 const Boxes = () => {
+    const [error,setError]=useState('');
     const [sentAmount,setSentAmount]=useState('');
     const [isfrom,setIsfrom]=useState(false);
     const [isto,setIsto]=useState(false);
@@ -74,6 +75,9 @@ const Boxes = () => {
         })
         console.log(response);
         const responseData=JSON.parse(response.data);
+        if(responseData.message==='201 not resolved'){
+          setError('Server could reach now');
+        }
         setGeneratedData(responseData);
       }catch(err){
         console.err(`Error:,${err.message}`);
@@ -121,6 +125,7 @@ const Boxes = () => {
             </select>
           </div>
         </div>
+        <p>{error?error:""}</p>
         <button onClick={generate}>Generate</button>
       </div>
     </>
