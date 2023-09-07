@@ -74,13 +74,18 @@ const Boxes = () => {
           }
         })
         console.log(response);
-        const responseData=JSON.parse(response.data);
-        if(responseData.message==='201 not resolved'){
-          setError('Server could reach now');
+        const responseData=response.data;
+        console.log(responseData);
+        if(responseData.code==='ENOTFOUND'){
+          console.log('dfd');
+          setError('Internet is not available');
         }
-        setGeneratedData(responseData);
+        else{
+          const responseData0=JSON.parse(response.data);
+          setGeneratedData(responseData0);
+        }
       }catch(err){
-        console.err(`Error:,${err.message}`);
+        console.error('error');
       }
     }
 
@@ -125,7 +130,7 @@ const Boxes = () => {
             </select>
           </div>
         </div>
-        <p>{error?error:""}</p>
+        <p className='errorshow'>{error?error:""}</p>
         <button onClick={generate}>Generate</button>
       </div>
     </>

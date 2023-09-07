@@ -1,18 +1,20 @@
 const express = require("express");
 const currencyRouter = express.Router();
 const request = require('request');
-
-
+const API_KEY=process.env.API_KEY;
+require('dotenv').config();
 
 currencyRouter.get("/", (req, res) => {
   const {sentAmount, fromCurrency, toCurrency } = req.query;
-//   console.log(toCurrency);
-//   console.log(fromCurrency);
+  const url = process.env.URL
+    .replace('${toCurrency}', toCurrency)
+    .replace('${fromCurrency}', fromCurrency)
+    .replace('${amount}', sentAmount);
   request.get(
     {
-      url: `https://api.api-ninjas.com/v1/convertcurrency?want=${toCurrency}&have=${fromCurrency}&amount=${sentAmount}`,
+      url:url,
       headers: {
-        "X-Api-Key": "8UC6iXzYGf0BIaz/oaQ5dQ==0V3lh45lfkR0Zr62",
+        "X-Api-Key":API_KEY,
       },
     },
     function (error, response, body) {
@@ -21,13 +23,7 @@ currencyRouter.get("/", (req, res) => {
        res.json({message:"201 not resolved"})
       else res.json(body);
     }
-  );
-//   res.json({
-//     from: from,
-//     to: to,
-//     fromCurrency: fromCurrency,
-//     toCurrency: toCurrency,
-//   });
+  );;
 });
 
 module.exports = currencyRouter;

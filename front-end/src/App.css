@@ -14,6 +14,9 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.errorshow{
+  color:red;
+}
 h1{
   color:white;
   font-weight: 500;
